@@ -4,19 +4,24 @@ object App {
   private val E = " "
 
   private var board = Array(
-    Array(O, O, O),
-    Array(X, X, O),
-    Array(O, X, X))
+    Array(O, O, X),
+    Array(X, X, X),
+    Array(O, O, E))
 
   def main(args: Array[String]) {
     printBoard()
     println
-    println(determineWinner())
+
+    val result = determineWinner()
+    if (result.equals(X) || result.equals(O)) {
+      println("The winner is " + result)
+    } else {
+      println("It's a tie!")
+    }
   }
 
-  private def determineWinner(): Any = {
+  private def determineWinner(): String = {
     var winner = ""
-    var playing = false
     winner = determineIfDiagonal()
     for (i <- board.indices) {
       if ((board(i) contains X) || (board(i) contains O)) {
@@ -26,11 +31,8 @@ object App {
           winner = board(0)(i)
         }
       }
-      if (board(i) contains E) {
-        playing = true
-      }
     }
-    determineResult(winner, playing)
+    winner
   }
 
   private def isWinningColumn(i: Int) = {
@@ -52,15 +54,6 @@ object App {
       }
     }
     winner
-  }
-
-
-  private def determineResult(winner: String, playing: Boolean): Any = {
-    if (!playing && winner.isEmpty) {
-      "It's a tie!"
-    } else if (!winner.isEmpty) {
-      "The winner is " + winner
-    }
   }
 
   private def printBoard(): Unit = {
