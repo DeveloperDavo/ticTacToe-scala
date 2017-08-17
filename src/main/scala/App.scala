@@ -5,8 +5,8 @@ object App {
 
   private var board = Array(
     Array(X, O, X),
-    Array(E, X, E),
-    Array(O, O, E))
+    Array(O, X, X),
+    Array(O, X, O))
 
   def main(args: Array[String]) {
     printBoard()
@@ -15,6 +15,7 @@ object App {
 
   private def printWinner() {
     var winner = ""
+    var playing = false
     for (i <- board.indices) {
       val middleEntry = board(1)(1)
       if (middleEntry.equals(X) || middleEntry.equals(O)) {
@@ -31,8 +32,15 @@ object App {
           winner = board(0)(i)
         }
       }
+      if (board(i) contains E) {
+        playing = true
+      }
     }
-    if (!winner.isEmpty) {
+    if (!playing) {
+      println
+      println("It's a tie!")
+    }
+    else if (!winner.isEmpty) {
       println
       println("The winner is " + winner)
     }
