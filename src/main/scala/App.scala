@@ -4,9 +4,9 @@ object App {
   private val E = " "
 
   private var board = Array(
-    Array(X, X, O),
-    Array(X, E, X),
-    Array(O, O, O))
+    Array(E, O, X),
+    Array(X, O, E),
+    Array(X, O, E))
 
   def main(args: Array[String]) {
     printBoard()
@@ -15,14 +15,16 @@ object App {
 
   private def printWinner() {
     var winner = ""
-    for (row <- board.indices) {
-      if ((board(row) contains X) || (board(row) contains O)) {
-        if (board(row)(0).equals(board(row)(1)) && board(row)(0).equals(board(row)(2))) {
-          winner = board(row)(0)
+    for (i <- board.indices) {
+      if ((board(i) contains X) || (board(i) contains O)) {
+        if (board(i)(0).equals(board(i)(1)) && board(i)(0).equals(board(i)(2))) {
+          winner = board(i)(0)
+        } else if (board(0)(i).equals(board(1)(i)) && board(0)(i).equals(board(2)(i))) {
+          winner = board(0)(i)
         }
       }
     }
-    println()
+    println
     println("The winner is " + winner)
   }
 
