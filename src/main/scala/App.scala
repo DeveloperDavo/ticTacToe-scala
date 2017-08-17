@@ -10,9 +10,11 @@ object App {
 
   def main(args: Array[String]) {
     printBoard()
-
     println
+    printTieOrWinner()
+  }
 
+  private def printTieOrWinner(): Unit = {
     val result = determineWinner()
     if (result.equals(E)) {
       println("It's a tie!")
