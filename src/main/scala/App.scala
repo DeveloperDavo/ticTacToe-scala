@@ -4,8 +4,8 @@ object App {
   private val E = " "
 
   private var board = Array(
-    Array(X, O, X),
     Array(X, O, O),
+    Array(X, X, O),
     Array(O, O, X))
 
   def main(args: Array[String]) {
@@ -17,14 +17,7 @@ object App {
     var winner = ""
     var playing = false
     for (i <- board.indices) {
-      val middleEntry = board(1)(1)
-      if (middleEntry.equals(X) || middleEntry.equals(O)) {
-        if (board(0)(0).equals(middleEntry) && middleEntry.equals(board(2)(2))) {
-          winner = middleEntry
-        } else if (board(0)(2).equals(middleEntry) && middleEntry.equals(board(2)(0))) {
-          winner = middleEntry
-        }
-      }
+      winner = determineIfDiagonal(i)
       if ((board(i) contains X) || (board(i) contains O)) {
         if (board(i)(0).equals(board(i)(1)) && board(i)(0).equals(board(i)(2))) {
           winner = board(i)(0)
@@ -38,6 +31,20 @@ object App {
     }
     printTieOrWinner(winner, playing)
   }
+
+  private def determineIfDiagonal(index: Int): String = {
+    var winner = ""
+    val middleEntry = board(1)(1)
+    if (middleEntry.equals(X) || middleEntry.equals(O)) {
+      if (board(0)(0).equals(middleEntry) && middleEntry.equals(board(2)(2))) {
+        winner = middleEntry
+      } else if (board(0)(2).equals(middleEntry) && middleEntry.equals(board(2)(0))) {
+        winner = middleEntry
+      }
+    }
+    winner
+  }
+
 
   private def printTieOrWinner(winner: String, playing: Boolean): Unit = {
     if (!playing && winner.isEmpty) {
