@@ -1,7 +1,7 @@
 object App {
-  var board = Array(Array("x", " ", "o"),
-    Array("x", "x", "x"),
-    Array(" ", "o", "o"))
+  var board = Array(Array("x", "x", "o"),
+    Array("x", " ", "x"),
+    Array("o", "o", "o"))
 
   def main(args: Array[String]) {
     printBoard()
@@ -10,7 +10,13 @@ object App {
   }
 
   private def determineWinner = {
-    "x"
+    if (board(0)(0).equals(board(0)(1)) && board(0)(0).equals(board(0)(2))) {
+      board(0)(0)
+    } else if(board(1)(0).equals(board(1)(1)) && board(1)(0).equals(board(1)(2))) {
+      board(1)(0)
+    } else if(board(2)(0).equals(board(2)(1)) && board(2)(0).equals(board(2)(2))) {
+      board(2)(0)
+    }
   }
 
   private def printBoard(): Unit = {
