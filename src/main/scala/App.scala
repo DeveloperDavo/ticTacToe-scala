@@ -4,9 +4,9 @@ object App {
   private val E = " "
 
   private var board = Array(
-    Array(O, O, X),
     Array(X, X, O),
-    Array(X, O, E))
+    Array(O, O, X),
+    Array(X, X, O))
 
   def main(args: Array[String]) {
     printBoard()
@@ -14,10 +14,10 @@ object App {
     println
 
     val result = determineWinner()
-    if (result.equals(X) || result.equals(O)) {
-      println("The winner is " + result)
-    } else {
+    if (result.equals(E)) {
       println("It's a tie!")
+    } else {
+      println("The winner is " + result)
     }
   }
 
@@ -32,7 +32,7 @@ object App {
         }
       }
     }
-    ""
+    E
   }
 
   private def isWinningColumn(i: Int) = {
