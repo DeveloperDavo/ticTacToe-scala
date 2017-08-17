@@ -5,18 +5,18 @@ object App {
 
   def main(args: Array[String]) {
     printBoard()
-    println
-    println("The winner is " + determineWinner)
+    printWinner()
   }
 
-  private def determineWinner = {
-    if (board(0)(0).equals(board(0)(1)) && board(0)(0).equals(board(0)(2))) {
-      board(0)(0)
-    } else if(board(1)(0).equals(board(1)(1)) && board(1)(0).equals(board(1)(2))) {
-      board(1)(0)
-    } else if(board(2)(0).equals(board(2)(1)) && board(2)(0).equals(board(2)(2))) {
-      board(2)(0)
+  private def printWinner() {
+    var winner = ""
+    for (row <- board.indices) {
+      if (board(row)(0).equals(board(row)(1)) && board(row)(0).equals(board(row)(2))) {
+        winner = board(row)(0)
+      }
     }
+    println()
+    println("The winner is " + winner)
   }
 
   private def printBoard(): Unit = {
