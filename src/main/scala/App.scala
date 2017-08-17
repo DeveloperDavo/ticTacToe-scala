@@ -10,10 +10,11 @@ object App {
 
   def main(args: Array[String]) {
     printBoard()
-    determineWinner()
+    println
+    println(determineWinner())
   }
 
-  private def determineWinner() {
+  private def determineWinner(): Any = {
     var winner = ""
     var playing = false
     winner = determineIfDiagonal()
@@ -29,7 +30,7 @@ object App {
         playing = true
       }
     }
-    printTieOrWinner(winner, playing)
+    determineResult(winner, playing)
   }
 
   private def isWinningColumn(i: Int) = {
@@ -54,14 +55,11 @@ object App {
   }
 
 
-  private def printTieOrWinner(winner: String, playing: Boolean): Unit = {
+  private def determineResult(winner: String, playing: Boolean): Any = {
     if (!playing && winner.isEmpty) {
-      println
-      println("It's a tie!")
-    }
-    else if (!winner.isEmpty) {
-      println
-      println("The winner is " + winner)
+      "It's a tie!"
+    } else if (!winner.isEmpty) {
+      "The winner is " + winner
     }
   }
 
