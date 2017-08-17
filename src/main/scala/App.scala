@@ -19,9 +19,9 @@ object App {
     winner = determineIfDiagonal()
     for (i <- board.indices) {
       if ((board(i) contains X) || (board(i) contains O)) {
-        if (board(i)(0).equals(board(i)(1)) && board(i)(0).equals(board(i)(2))) {
+        if (isWinningRow(i)) {
           winner = board(i)(0)
-        } else if (board(0)(i).equals(board(1)(i)) && board(0)(i).equals(board(2)(i))) {
+        } else if (isWinningColumn(i)) {
           winner = board(0)(i)
         }
       }
@@ -30,6 +30,14 @@ object App {
       }
     }
     printTieOrWinner(winner, playing)
+  }
+
+  private def isWinningColumn(i: Int) = {
+    board(0)(i).equals(board(1)(i)) && board(0)(i).equals(board(2)(i))
+  }
+
+  private def isWinningRow(i: Int) = {
+    board(i)(0).equals(board(i)(1)) && board(i)(0).equals(board(i)(2))
   }
 
   private def determineIfDiagonal(): String = {
