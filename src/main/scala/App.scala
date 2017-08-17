@@ -5,7 +5,12 @@ object App {
 
   def main(args: Array[String]) {
     printBoard()
-    println("x is the winner")
+    println
+    println("The winner is " + determineWinner)
+  }
+
+  private def determineWinner = {
+    "x"
   }
 
   private def printBoard(): Unit = {
@@ -19,7 +24,7 @@ object App {
     boardRow.foreach { boardElem =>
       printEntry(boardElem)
     }
-    println()
+    println
   }
 
   private def printEntry(boardElem: String): Unit = {
