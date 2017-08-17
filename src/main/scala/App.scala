@@ -4,9 +4,9 @@ object App {
   private val E = " "
 
   private var board = Array(
-    Array(X, X, X),
-    Array(O, X, O),
-    Array(O, X, E))
+    Array(X, O, X),
+    Array(X, O, O),
+    Array(O, O, X))
 
   def main(args: Array[String]) {
     printBoard()
@@ -40,7 +40,7 @@ object App {
   }
 
   private def printTieOrWinner(winner: String, playing: Boolean): Unit = {
-    if (!playing) {
+    if (!playing && winner.isEmpty) {
       println
       println("It's a tie!")
     }
