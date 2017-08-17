@@ -4,16 +4,16 @@ object App {
   private val E = " "
 
   private var board = Array(
-    Array(X, O, X),
-    Array(O, X, X),
-    Array(O, X, O))
+    Array(X, X, X),
+    Array(O, X, O),
+    Array(O, X, E))
 
   def main(args: Array[String]) {
     printBoard()
-    printWinner()
+    determineWinner()
   }
 
-  private def printWinner() {
+  private def determineWinner() {
     var winner = ""
     var playing = false
     for (i <- board.indices) {
@@ -36,6 +36,10 @@ object App {
         playing = true
       }
     }
+    printTieOrWinner(winner, playing)
+  }
+
+  private def printTieOrWinner(winner: String, playing: Boolean): Unit = {
     if (!playing) {
       println
       println("It's a tie!")
