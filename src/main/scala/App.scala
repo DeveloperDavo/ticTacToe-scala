@@ -5,11 +5,12 @@ object App {
 
   private var board = Array(
     Array(O, O, X),
-    Array(X, X, X),
-    Array(O, O, E))
+    Array(X, X, O),
+    Array(X, O, E))
 
   def main(args: Array[String]) {
     printBoard()
+
     println
 
     val result = determineWinner()
@@ -21,18 +22,17 @@ object App {
   }
 
   private def determineWinner(): String = {
-    var winner = ""
-    winner = determineIfDiagonal()
+    if (determineIfDiagonalIsFilled()) return board(1)(1)
     for (i <- board.indices) {
       if ((board(i) contains X) || (board(i) contains O)) {
         if (isWinningRow(i)) {
-          winner = board(i)(0)
+          return board(i)(0)
         } else if (isWinningColumn(i)) {
-          winner = board(0)(i)
+          return board(0)(i)
         }
       }
     }
-    winner
+    ""
   }
 
   private def isWinningColumn(i: Int) = {
@@ -43,17 +43,16 @@ object App {
     board(i)(0).equals(board(i)(1)) && board(i)(0).equals(board(i)(2))
   }
 
-  private def determineIfDiagonal(): String = {
-    var winner = ""
+  private def determineIfDiagonalIsFilled(): Boolean = {
     val middleEntry = board(1)(1)
     if (middleEntry.equals(X) || middleEntry.equals(O)) {
       if (board(0)(0).equals(middleEntry) && middleEntry.equals(board(2)(2))) {
-        winner = middleEntry
+        return true
       } else if (board(0)(2).equals(middleEntry) && middleEntry.equals(board(2)(0))) {
-        winner = middleEntry
+        return true
       }
     }
-    winner
+    false
   }
 
   private def printBoard(): Unit = {
