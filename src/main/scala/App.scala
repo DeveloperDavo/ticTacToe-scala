@@ -4,9 +4,9 @@ object App {
   private val E = " "
 
   private var board = Array(
-    Array(E, O, X),
+    Array(X, O, X),
     Array(E, X, E),
-    Array(X, O, E))
+    Array(O, O, E))
 
   def main(args: Array[String]) {
     printBoard()
@@ -32,8 +32,10 @@ object App {
         }
       }
     }
-    println
-    println("The winner is " + winner)
+    if (!winner.isEmpty) {
+      println
+      println("The winner is " + winner)
+    }
   }
 
   private def printBoard(): Unit = {
