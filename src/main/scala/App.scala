@@ -11,8 +11,10 @@ object App {
   private def printWinner() {
     var winner = ""
     for (row <- board.indices) {
-      if (board(row)(0).equals(board(row)(1)) && board(row)(0).equals(board(row)(2))) {
-        winner = board(row)(0)
+      if ((board(row) contains "x") || (board(row) contains "o")) {
+        if (board(row)(0).equals(board(row)(1)) && board(row)(0).equals(board(row)(2))) {
+          winner = board(row)(0)
+        }
       }
     }
     println()
