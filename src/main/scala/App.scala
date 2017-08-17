@@ -1,10 +1,11 @@
 object App {
   private val X = "x"
   private val O = "o"
-  private val EMPTY = " "
+  private val E = " "
 
-  private var board = Array(Array(X, X, O),
-    Array(X, EMPTY, X),
+  private var board = Array(
+    Array(X, X, O),
+    Array(X, E, X),
     Array(O, O, O))
 
   def main(args: Array[String]) {
