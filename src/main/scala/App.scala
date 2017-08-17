@@ -1,4 +1,4 @@
-object HelloWorld {
+object App {
   def main(args: Array[String]) {
     var board = Array(Array("x", " ", "o"),
       Array("x", "x", " "),
