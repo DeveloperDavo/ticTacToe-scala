@@ -5,7 +5,7 @@ object App {
 
   private var board = Array(
     Array(E, O, X),
-    Array(X, O, E),
+    Array(E, X, E),
     Array(X, O, E))
 
   def main(args: Array[String]) {
@@ -16,6 +16,14 @@ object App {
   private def printWinner() {
     var winner = ""
     for (i <- board.indices) {
+      val middleEntry = board(1)(1)
+      if (middleEntry.equals(X) || middleEntry.equals(O)) {
+        if (board(0)(0).equals(middleEntry) && middleEntry.equals(board(2)(2))) {
+          winner = middleEntry
+        } else if (board(0)(2).equals(middleEntry) && middleEntry.equals(board(2)(0))) {
+          winner = middleEntry
+        }
+      }
       if ((board(i) contains X) || (board(i) contains O)) {
         if (board(i)(0).equals(board(i)(1)) && board(i)(0).equals(board(i)(2))) {
           winner = board(i)(0)
