@@ -21,7 +21,7 @@ class Logic(board: Array[Array[Char]]) {
     if (isStillGoing) {
       return factory.getResult(App.E)
     }
-    new TieResult
+    factory.getResult(App.TIE)
 
   }
 
