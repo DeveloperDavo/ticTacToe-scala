@@ -3,14 +3,18 @@ import result.{Result, TieResult, WinnerIsOResult, WinnerIsXResult}
 
 class Logic(board: Array[Array[Char]]) {
   def determineWinner(): Result = {
-    if (determineIfDiagonalIsFilled()) return getResult(board(1)(1))
+
+    val middleEntry = board(1)(1)
+    if (isWinningDiagonal(middleEntry)) getResult(middleEntry)
+
     for (i <- board.indices) {
-      if ((board(i) contains X) || (board(i) contains O)) {
-        if (isWinningRow(i)) {
-          return getResult(board(i)(0))
-        } else if (isWinningColumn(i)) {
-          return getResult(board(0)(i))
-        }
+      val firstEntryInRow = board(i)(0)
+      val firstEntryInColumn = board(0)(i)
+
+      if (isWinningRow(firstEntryInRow, i)) {
+        return getResult(firstEntryInRow)
+      } else if (isWinningColumn(firstEntryInColumn, i)) {
+        return getResult(firstEntryInColumn)
       }
     }
     new TieResult
@@ -24,9 +28,7 @@ class Logic(board: Array[Array[Char]]) {
     }
   }
 
-  private def isWinningColumn(column: Int): Boolean = {
-    val firstEntry = board(0)(column)
-
+  private def isWinningColumn(firstEntry: Char, column: Int): Boolean = {
     if (E == firstEntry) {
       return false
     }
@@ -39,9 +41,7 @@ class Logic(board: Array[Array[Char]]) {
     true
   }
 
-  private def isWinningRow(row: Int): Boolean = {
-    val firstEntry = board(row)(0)
-
+  private def isWinningRow(firstEntry: Char, row: Int): Boolean = {
     if (E == firstEntry) {
       return false
     }
@@ -54,8 +54,7 @@ class Logic(board: Array[Array[Char]]) {
     true
   }
 
-  private def determineIfDiagonalIsFilled(): Boolean = {
-    val middleEntry = board(1)(1)
+  private def isWinningDiagonal(middleEntry: Char): Boolean = {
     if (middleEntry == E) {
       false
     } else {

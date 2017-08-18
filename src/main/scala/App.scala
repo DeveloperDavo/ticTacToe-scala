@@ -4,7 +4,7 @@ object App {
   val E = ' '
 
   private var board = Array(
-    Array(X, E, O),
+    Array(E, E, O),
     Array(X, E, O),
     Array(X, E, E))
 
