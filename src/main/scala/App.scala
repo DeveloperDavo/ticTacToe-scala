@@ -2,11 +2,12 @@ object App {
   val X = 'x'
   val O = 'o'
   val E = ' '
+  val TIE = 't'
 
   private var board = Array(
+    Array(O, X, O),
     Array(O, X, X),
-    Array(O, O, X),
-    Array(X, X, O))
+    Array(X, O, O))
 
   def main(args: Array[String]) {
     printBoard()
@@ -16,7 +17,7 @@ object App {
 
   private def printTieOrWinner(): Unit = {
     val result = new Logic(board).determineWinner()
-    if (E == result) {
+    if (TIE == result) {
       println("It's a tie!")
     } else {
       println("The winner is " + result)

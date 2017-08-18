@@ -1,4 +1,4 @@
-import App.{X, O, E}
+import App.{X, O, TIE}
 
 class Logic(board: Array[Array[Char]]) {
   def determineWinner(): Char = {
@@ -12,7 +12,7 @@ class Logic(board: Array[Array[Char]]) {
         }
       }
     }
-    E
+    TIE
   }
 
   private def isWinningColumn(i: Int) = {
