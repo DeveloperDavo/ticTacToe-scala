@@ -1,20 +1,20 @@
-import App.{E, O, X}
 import result._
 
 class Logic(board: Array[Array[Char]]) {
   def determineWinner(): Result = {
+    val factory = new ResultFactory
 
     val middleEntry = board(1)(1)
-    if (isWinningDiagonal(middleEntry)) getResult(middleEntry)
+    if (isWinningDiagonal(middleEntry)) factory.getResult(middleEntry)
 
     for (i <- board.indices) {
       val firstEntryInRow = board(i)(0)
       val firstEntryInColumn = board(0)(i)
 
       if (isWinningRow(firstEntryInRow, i)) {
-        return getResult(firstEntryInRow)
+        return factory.getResult(firstEntryInRow)
       } else if (isWinningColumn(firstEntryInColumn, i)) {
-        return getResult(firstEntryInColumn)
+        return factory.getResult(firstEntryInColumn)
       }
     }
 
@@ -27,23 +27,13 @@ class Logic(board: Array[Array[Char]]) {
 
   private def isStillGoing: Boolean = {
     for (i <- board.indices) {
-      return board(i) contains E
+      return board(i) contains App.E
     }
     false
   }
 
-
-
-  private def getResult(entry: Char): Result = {
-    if (X == entry) {
-      new WinnerIsXResult
-    } else {
-      new WinnerIsOResult
-    }
-  }
-
   private def isWinningColumn(firstEntry: Char, column: Int): Boolean = {
-    if (E == firstEntry) {
+    if (App.E == firstEntry) {
       return false
     }
 
@@ -56,7 +46,7 @@ class Logic(board: Array[Array[Char]]) {
   }
 
   private def isWinningRow(firstEntry: Char, row: Int): Boolean = {
-    if (E == firstEntry) {
+    if (App.E == firstEntry) {
       return false
     }
 
@@ -69,7 +59,7 @@ class Logic(board: Array[Array[Char]]) {
   }
 
   private def isWinningDiagonal(middleEntry: Char): Boolean = {
-    if (middleEntry == E) {
+    if (middleEntry == App.E) {
       false
     } else {
       checkBothDiagonals(middleEntry)
