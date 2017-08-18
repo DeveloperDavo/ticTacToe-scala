@@ -7,8 +7,10 @@ class ResultFactory {
       new WinnerIsXResult
     } else if (App.O == entry) {
       new WinnerIsOResult
+    } else if (App.E == entry) {
+      new NoResult
     } else {
-      throw new IllegalArgumentException("Unsupported Entry")
+      throw new IllegalArgumentException("Unsupported Entry: " + entry)
     }
   }
 

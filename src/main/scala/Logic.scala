@@ -19,7 +19,7 @@ class Logic(board: Array[Array[Char]]) {
     }
 
     if (isStillGoing) {
-      return new NoResult
+      return factory.getResult(App.E)
     }
     new TieResult
 
