@@ -24,12 +24,34 @@ class Logic(board: Array[Array[Char]]) {
     }
   }
 
-  private def isWinningColumn(column: Int) = {
-    board(0)(column) == board(1)(column) && board(0)(column) == board(2)(column)
+  private def isWinningColumn(column: Int): Boolean = {
+    val firstEntry = board(0)(column)
+
+    if (E == firstEntry) {
+      return false
+    }
+
+    for (i <- 1 until board.length) {
+      if (firstEntry != board(i)(column)) {
+        return false
+      }
+    }
+    true
   }
 
-  private def isWinningRow(row: Int) = {
-    board(row)(0) == board(row)(1) && board(row)(0) == board(row)(2)
+  private def isWinningRow(row: Int): Boolean = {
+    val firstEntry = board(row)(0)
+
+    if (E == firstEntry) {
+      return false
+    }
+
+    for (i <- 1 until board.length) {
+      if (firstEntry != board(row)(i)) {
+        return false
+      }
+    }
+    true
   }
 
   private def determineIfDiagonalIsFilled(): Boolean = {
