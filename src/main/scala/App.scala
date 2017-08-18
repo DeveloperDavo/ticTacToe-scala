@@ -2,6 +2,7 @@ object App {
   val X = 'x'
   val O = 'o'
   val E = ' '
+  val TIE = 't'
 
   def main(args: Array[String]) {
     val board1 = Array(
