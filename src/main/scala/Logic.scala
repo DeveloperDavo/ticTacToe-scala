@@ -1,5 +1,5 @@
-import App.{O, X, E}
-import result.{Result, TieResult, WinnerIsOResult, WinnerIsXResult}
+import App.{E, O, X}
+import result._
 
 class Logic(board: Array[Array[Char]]) {
   def determineWinner(): Result = {
@@ -17,8 +17,22 @@ class Logic(board: Array[Array[Char]]) {
         return getResult(firstEntryInColumn)
       }
     }
+
+    if (isStillGoing) {
+      return new NoResult
+    }
     new TieResult
+
   }
+
+  private def isStillGoing: Boolean = {
+    for (i <- board.indices) {
+      return board(i) contains E
+    }
+    false
+  }
+
+
 
   private def getResult(entry: Char): Result = {
     if (X == entry) {

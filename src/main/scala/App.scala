@@ -3,23 +3,33 @@ object App {
   val O = 'o'
   val E = ' '
 
-  private var board = Array(
-    Array(E, E, O),
-    Array(X, E, O),
-    Array(X, E, E))
-
   def main(args: Array[String]) {
-    printBoard()
-    println
-    printTieOrWinner()
+    val board1 = Array(
+      Array(E, E, O),
+      Array(X, E, O),
+      Array(X, E, E))
+
+    val board2 = Array(
+      Array(X, E, O),
+      Array(X, E, O),
+      Array(X, E, E))
+
+    printTurn(board1)
+    printTurn(board2)
   }
 
-  private def printTieOrWinner(): Unit = {
+  private def printTurn(board: Array[Array[Char]]): Unit = {
+    printBoard(board)
+    println
+    printResult(board)
+  }
+
+  private def printResult(board: Array[Array[Char]]): Unit = {
     val result = new Logic(board).determineWinner()
     println(result.getMessage)
   }
 
-  private def printBoard(): Unit = {
+  private def printBoard(board: Array[Array[Char]]): Unit = {
     board.foreach { boardRow =>
       printRow(boardRow)
     }
