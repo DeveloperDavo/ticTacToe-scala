@@ -27,7 +27,9 @@ class Logic(board: Array[Array[Char]]) {
 
   private def isStillGoing: Boolean = {
     for (i <- board.indices) {
-      return board(i) contains App.E
+      if (board(i) contains App.E) {
+        return true
+      }
     }
     false
   }

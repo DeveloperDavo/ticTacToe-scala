@@ -5,14 +5,14 @@ object App {
 
   def main(args: Array[String]) {
     val board1 = Array(
-      Array(E, E, O),
+      Array(X, O, X),
       Array(X, E, O),
-      Array(X, E, E))
+      Array(O, X, O))
 
     val board2 = Array(
-      Array(X, E, O),
-      Array(X, E, O),
-      Array(X, E, E))
+      Array(X, O, X),
+      Array(X, X, O),
+      Array(O, X, O))
 
     printTurn(board1)
     printTurn(board2)
