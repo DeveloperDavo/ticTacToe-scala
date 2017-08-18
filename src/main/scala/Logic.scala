@@ -1,18 +1,27 @@
-import App.{X, O, TIE}
+import App.{O, X}
+import result.{Result, TieResult, WinnerIsOResult, WinnerIsXResult}
 
 class Logic(board: Array[Array[Char]]) {
-  def determineWinner(): Char = {
-    if (determineIfDiagonalIsFilled()) return board(1)(1)
+  def determineWinner(): Result = {
+    if (determineIfDiagonalIsFilled()) return getResult(board(1)(1))
     for (i <- board.indices) {
       if ((board(i) contains X) || (board(i) contains O)) {
         if (isWinningRow(i)) {
-          return board(i)(0)
+          return getResult(board(i)(0))
         } else if (isWinningColumn(i)) {
-          return board(0)(i)
+          return getResult(board(0)(i))
         }
       }
     }
-    TIE
+    new TieResult
+  }
+
+  private def getResult(entry: Char): Result = {
+    if (X == entry) {
+      new WinnerIsXResult
+    } else {
+      new WinnerIsOResult
+    }
   }
 
   private def isWinningColumn(i: Int) = {
