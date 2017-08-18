@@ -4,9 +4,9 @@ object App {
   val E = ' '
 
   private var board = Array(
-    Array(O, X, E),
-    Array(E, O, E),
-    Array(X, X, O))
+    Array(X, O, E),
+    Array(E, X, E),
+    Array(O, E, X))
 
   def main(args: Array[String]) {
     printBoard()

@@ -1,4 +1,4 @@
-import App.{O, X}
+import App.{O, X, E}
 import result.{Result, TieResult, WinnerIsOResult, WinnerIsXResult}
 
 class Logic(board: Array[Array[Char]]) {
@@ -24,25 +24,30 @@ class Logic(board: Array[Array[Char]]) {
     }
   }
 
-  private def isWinningColumn(i: Int) = {
-    board(0)(i) == board(1)(i) && board(0)(i) == board(2)(i)
+  private def isWinningColumn(column: Int) = {
+    board(0)(column) == board(1)(column) && board(0)(column) == board(2)(column)
   }
 
-  private def isWinningRow(i: Int) = {
-    board(i)(0) == board(i)(1) && board(i)(0) == board(i)(2)
+  private def isWinningRow(row: Int) = {
+    board(row)(0) == board(row)(1) && board(row)(0) == board(row)(2)
   }
 
   private def determineIfDiagonalIsFilled(): Boolean = {
     val middleEntry = board(1)(1)
-    if (X == middleEntry || middleEntry == O) {
-      if (board(0)(0) == middleEntry && middleEntry == board(2)(2)) {
-        return true
-      } else if (board(0)(2) == middleEntry && middleEntry == board(2)(0)) {
-        return true
-      }
+    if (middleEntry == E) {
+      false
+    } else {
+      checkBothDiagonals(middleEntry)
     }
-    false
   }
 
 
+  private def checkBothDiagonals(middleEntry: Char): Boolean = {
+    if (board(0)(0) == middleEntry && middleEntry == board(2)(2)) {
+      return true
+    } else if (board(0)(2) == middleEntry && middleEntry == board(2)(0)) {
+      return true
+    }
+    false
+  }
 }
